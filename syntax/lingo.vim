@@ -3,11 +3,20 @@
 " Filenames:	*.ls
 " Maintainer:	Thomas Schmall <ts_nowhere@yahoo.com>
 " Derived From Script By:   Robert Robbins <rrobbins@sunlink.net>
-" Last Change:	2004 June 14
+" URL: http://www.vim.org/scripts/script.php?script_id=1010
+" See Also: http://www.vim.org/scripts/script.php?script_id=1012  (color
+" scheme)
+"
+" Last Change:	2004 August 03
 
 " This syntax file not a complete implementation yet.  Send suggestions to the
 " maintainer.
 "
+" Release Notes:
+" *entered TODO commands for comments (not an original lingo feature)
+" *entered some more keywords, and #
+
+
 " Todo: better solution for contains and transparant if possible
 "       define identifier?
 
@@ -22,6 +31,9 @@ endif
 
 " LINGO is case insensitive
 syn case ignore
+
+" TODO und FIXME -- normally not Lingo but useful though
+syn keyword specialTodo		contained TODO FIXME XXX
 
 " A bunch of useful LINGO keywords
 syn keyword lingoStatement	abort after and
@@ -64,7 +76,7 @@ syn keyword lingoFunction	constrainh constraint constrainv  continue controldown
 syn keyword lingoFunction	[contains]
 syn keyword lingoFunction	createfolder createmask creatematte creationdate creator crop cross crossproduct cuepassed cuepointnames cuepointtimes currentloopstate currentspritenum currenttime 
 syn keyword lingoFunction	cursor cursorsize curve cylinder
-syn keyword lingoFunction	date deactivateapplication deactivatewindow debug debugplaybackenabled decaymode defaultrect defaultrectmode delay delete deleteall deleteat deletecamera deletefolder 
+syn keyword lingoFunction	date day deactivateapplication deactivatewindow debug debugplaybackenabled decaymode defaultrect defaultrectmode delay delete deleteall deleteat deletecamera deletefolder 
 syn keyword lingoFunction	deleteframe deletegroup deletelight deletemodel deletemodelresource deletemotion deleteone deleteprop deleteshader deletetexture deletevertex density depth depthbufferdepth 
 syn keyword lingoFunction	desktoprectlist diffuse diffusecolor diffuselightmap digitalvideotimescale digitalvideotype direction directionalcolor directionalpreset directtostage 
 syn keyword lingoFunction	disableimagingtransformation displayface displaymode distanceto distribution dither done doneparsing dot dotproduct doubleclick downloadnetthing drag draw drawrect dropshadow 
@@ -91,12 +103,12 @@ syn keyword lingoFunction	linedirection lineheight lineoffset linepostolocv line
 syn keyword lingoFunction	log long loop loopcount loopendtime loopsremaining loopstarttime
 syn keyword lingoFunction	machinetype magnitude map mapmembertostage mapstagetomember margin marker markerlist mask max maxinteger maxspeed mci media mediaready member membernum members memorysize menu 
 syn keyword lingoFunction	mesh meshdeform milliseconds min minspeed modal mode model modela modelb modelresource modelsunderloc modelsunderray modelunderloc modified modifiedby modifieddate modifier 
-syn keyword lingoFunction	modifiers mostrecentcuepoint motion mousechar mousedown mousedownscript mouseenter mouseh mouseitem mouseleave mouselevel mouseline mouseloc mousemember mouseoverbutton 
+syn keyword lingoFunction	modifiers month mostrecentcuepoint motion mousechar mousedown mousedownscript mouseenter mouseh mouseitem mouseleave mouselevel mouseline mouseloc mousemember mouseoverbutton 
 syn keyword lingoFunction	mouseup mouseupoutside mouseupscript mousev mousewithin mouseword move moveablesprite movetoback movetofront movevertex movevertexhandle movewindow movie movieaboutinfo 
 syn keyword lingoFunction	moviecopyrightinfo moviefilefreesize moviefilesize moviefileversion movieimagecompression movieimagequality moviename moviepath movierate movietime moviextralist mpeglayer 
 syn keyword lingoFunction	multiply multisound
 syn keyword lingoFunction	name near nearfiltering neighbor netabort netdone neterror netlastmoddate netmime netpresent netstatus nettextresult netthrottleticks newcamera newcurve newgroup newlight 
-syn keyword lingoFunction	newmesh newmodel newmodelresource newmotion newshader newtexture next normalize normallist normals nothing notify nudge number numchannels numparticles numsegments numtochar
+syn keyword lingoFunction	newmesh newmodel newmodelresource newmotion newshader newtexture next none normalize normallist normals nothing notify nudge number numchannels numparticles numsegments numtochar
 syn keyword lingoFunction	objectp offset open openresfile openwindow openxlib optiondown organizationname originalfont originh originmode originpoint originv orthoheight overlay
 syn keyword lingoFunction	pageheight palette palettemapping paletteref paletteindex
 syn keyword lingoFunction       pan paragraph param paramcount parent parsestring particle pasteclipboardinto path pathname pathstrength pattern pause 
@@ -132,7 +144,7 @@ syn keyword lingoFunction	value vector version vertex vertexlist vertices video 
 syn keyword lingoFunction	wait waitfornetconnection warpmode width widthvertices wind window windowlist windowpresent windowtype word wordwrap world worldposition worldspacetospritespace worldtransform 
 syn keyword lingoFunction	wraptransform wraptransformlist write writevalue
 syn keyword lingoFunction	x xaxis xtra xtralist xtras
-syn keyword lingoFunction	y yaxis yon
+syn keyword lingoFunction	y yaxis year yon
 syn keyword lingoFunction	z zaxis zoombox zoomwindow
 
 "integer number, or floating point number without a dot.
@@ -148,6 +160,7 @@ syn region  lingoString		  start=+"+  skip=+\\\\\|\\"+  end=+"+  contains=lingoS
 
 " Lingo Math Operators 
 syn match   lingoMathsOperator   "[<>+\*^/\\=-]"
+syn match   lingoFunction   "\#"
 
 if !exists("did_lingo_syntax_inits")
   let did_lingo_syntax_inits = 1
@@ -166,12 +179,15 @@ if !exists("did_lingo_syntax_inits")
   hi link lingoSpecial		Special
 
   hi link lingoNumber		Number
-  hi link lingoFloat		Number
+  hi link lingoFloat            Number
+
+  hi link specialTodo           Todo
+  "Constant is useful here too?
 
 endif
 
 " Lingo comments
-syn region  lingoComment      start="--" end="$"
+syn region  lingoComment      start="--" end="$" contains=specialTodo
 
 let b:current_syntax = "lingo"
 
