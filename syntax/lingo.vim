@@ -1,18 +1,19 @@
 " Vim syntax file
 " Language:	LINGO
 " Filenames:	*.ls
-" Maintainer:	Thomas Schmall <ts_nowhere@yahoo.com>
-" Derived From Script By:   Robert Robbins <rrobbins@sunlink.net>
+" Maintainer:	Thomas Schmall <ts_nowhere@NOSPAM_yahoo.com>
+" Derived From Script By:   Robert Robbins <rrobbins@NOSPAM_sunlink.net>
 " URL: http://www.vim.org/scripts/script.php?script_id=1010
 " See Also: http://www.vim.org/scripts/script.php?script_id=1012  (color
 " scheme)
 "
-" Last Change:	2004 August 03
+" Last Change:	2004 Nov 17
 
 " This syntax file not a complete implementation yet.  Send suggestions to the
 " maintainer.
 "
 " Release Notes:
+"current: *included keywords: bitmap, index, mapImageToStage
 " *entered TODO commands for comments (not an original lingo feature)
 " *entered some more keywords, and #
 
@@ -64,7 +65,7 @@ syn keyword lingoFunction	abbr abbrev abbreviated abs actionsenabled activateapp
 syn keyword lingoFunction	addmodifier addoverlay addprop addtoworld addvertex alert alerthook alignment allowcustomcaching allowgraphicmenu allowsavelocal allowtransportcontrol allowvolumecontrol 
 syn keyword lingoFunction	allowzooming alphathreshold ambient ambientcolor ancestor angle anglebetween animationenabled antialias antialiasthreshold append applicationname applicationpath appminimize 
 syn keyword lingoFunction	atan attenuation attributevalue auto autoblend automask autotab axisangle
-syn keyword lingoFunction	back backcolor backdrop backgroundcolor backspace beep beepon beginrecording beginsprite beveldepth beveltype bgcolor bias bitand bitmapsizes bitnot bitor bitrate 
+syn keyword lingoFunction	back backcolor backdrop backgroundcolor backspace beep beepon beginrecording beginsprite beveldepth beveltype bgcolor bias bitand bitmap bitmapsizes bitnot bitor bitrate 
 syn keyword lingoFunction	bitspersample bitxor blend blendconstant blendconstantlist blendfactor blendfunction blendfunctionlist blendlevel blendrange blendsource blendsourcelist blendtime bone 
 syn keyword lingoFunction	bonesplayer border both bottom bottomcap bottomradius bottomspacing boundary boundingsphere box boxdropshadow boxtype breakconnection breakloop brightness broadcastprops 
 syn keyword lingoFunction	browsername buffersize build buttonsenabled buttonstyle buttontype bytesstreamed boolean
@@ -96,12 +97,12 @@ syn keyword lingoFunction	handler handlers height heightvertices high highlightp
 syn keyword lingoFunction	hyperlinks hyperlinkstate
 syn keyword lingoFunction	id3tags identity idle idlehandlerperiod idleloaddone idleloadmode idleloadperiod idleloadtag idlereadchunksize ilk image imagecompression imageenabled imagequality immovable 
 syn keyword lingoFunction	importfileinto inflate ink inker inlineimeenabled insertbackdrop insertframe insertoverlay inside installmenu instance integer integerp interface interpolate interpolateto intersect
-syn keyword lingoFunction	interval inverse invert invertmask isbusy isinworld isoktoattach ispastcuepoint item itemdelimiter
+syn keyword lingoFunction	index interval inverse invert invertmask isbusy isinworld isoktoattach ispastcuepoint item itemdelimiter
 syn keyword lingoFunction	kerning kerningthreshold key keyboardfocussprite keycode keydown keydownscript keyframeplayer keypressed keyup keyupscript
 syn keyword lingoFunction	label labellist last lastchannel lastclick lastevent lastframe lastkey lastroll left leftindent length lengthvertices level lifetime light line linearlist linecolor linecount 
 syn keyword lingoFunction	linedirection lineheight lineoffset linepostolocv linesize linkas linked list listp loaded loadfile loc loch locked locktranslation loctocharpos locv locvtolinepos locz lod 
 syn keyword lingoFunction	log long loop loopcount loopendtime loopsremaining loopstarttime
-syn keyword lingoFunction	machinetype magnitude map mapmembertostage mapstagetomember margin marker markerlist mask max maxinteger maxspeed mci media mediaready member membernum members memorysize menu 
+syn keyword lingoFunction	machinetype magnitude map mapImageToStage mapmembertostage mapstagetomember margin marker markerlist mask max maxinteger maxspeed mci media mediaready member membernum members memorysize menu 
 syn keyword lingoFunction	mesh meshdeform milliseconds min minspeed modal mode model modela modelb modelresource modelsunderloc modelsunderray modelunderloc modified modifiedby modifieddate modifier 
 syn keyword lingoFunction	modifiers month mostrecentcuepoint motion mousechar mousedown mousedownscript mouseenter mouseh mouseitem mouseleave mouselevel mouseline mouseloc mousemember mouseoverbutton 
 syn keyword lingoFunction	mouseup mouseupoutside mouseupscript mousev mousewithin mouseword move moveablesprite movetoback movetofront movevertex movevertexhandle movewindow movie movieaboutinfo 
@@ -155,8 +156,11 @@ syn match  lingoFloat		"\<\d\+\.\d*\>"
 syn match  lingoFloat		"\.\d\+\>"
 
 " String and Character contstants
-syn match   lingoSpecial contained "\\\d\d\d\|\\."
-syn region  lingoString		  start=+"+  skip=+\\\\\|\\"+  end=+"+  contains=lingoSpecial
+syn region  lingoString		  start=+"+  end=+"+  contains=lingoSpecial
+"orignal lines here:
+" syn match   lingoSpecial contained "\\\d\d\d\|\\."
+" syn region  lingoString  start=+"+  skip=+\\\\\|\\"+  end=+"+  contains=lingoSpecial
+"deleted the first line and skip, because there is (AFAIK) no special character in lingo
 
 " Lingo Math Operators 
 syn match   lingoMathsOperator   "[<>+\*^/\\=-]"
